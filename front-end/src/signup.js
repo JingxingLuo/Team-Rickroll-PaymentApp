@@ -1,14 +1,41 @@
 import React from "react";
-import './signup.css';
+//import './signup.css';
+const SignUp = () => {
+    const [username, setUsername] = React.useState('');
+    const [password, setPassword] = React.useState('');
 
-const signup = () => {
+    const handleSignUp = () => {
+        console.log('Sign Up Clicked', username, password);
+        const body = {
+            username: username,
+            password: password,
+        };
+        const settings = {
+            method: 'post',
+            body: JSON.stringify(body), //to json string
+        };
+        fetch('/api/SignUp', settings) // makes http client calls 
+            .catch(console.log);
+    };
+    
     return(
         <div>
-            <h1>
-                Sign Up
-            </h1>
+            <h1>Sign Up</h1>
+
+            <div>
+                <div>
+                    <input value={username} onChange={(e) => setUsername(e.target.value)}/>
+                </div>
+                <div>
+                    <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
+                </div>
+                <div>
+                <button onClick={handleSignUp}>Sign Up</button>
+                </div>
+            </div>
         </div>
     );
 };
 
-export default signup;
+// manually export in js
+export default SignUp;

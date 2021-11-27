@@ -1,9 +1,38 @@
 import { Link, Switch, Route } from 'react-router-dom';
 import './App.css';
 
-function App() {
+import Home from './home';
+import SignUp from './signup';
+import Login from './login';
 
-const myHandler = () =>{
+function App() {
+return (
+  <div>
+    <nav>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/SignUp">Sign Up</Link>
+        </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      </ul>
+    </nav>
+
+    <Switch>
+      <Route path="/SignUp"><SignUp /></Route>
+      <Route path="/login"><Login /></Route>
+      <Route path="/"><Home /></Route>
+    </Switch>
+  </div>
+);
+}
+
+export default App;
+/*const myHandler = () =>{
   console.log('User has clicked')
 };
   return (
@@ -67,4 +96,4 @@ const myHandler = () =>{
   );
 }
 
-export default App;
+export default App; */

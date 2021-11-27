@@ -1,14 +1,13 @@
-import './home.css';
+//import './home.css';
+import React from 'react';
 
-function home(){
-
+const Home = () => {
     return(
-        <div className="home">
-
+        <div>
+            <h1>Home</h1>      
         </div>
-
     );
+};
 
-}
-
-export default home;
+// manually export in js 
+export default Home;
