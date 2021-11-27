@@ -163,12 +163,12 @@ body{
 }
 
 .Sign-up{
-    color: #000000;
-    background-color: rgb(55, 55, 247);
+    color: #ffffff;
+    background-color: rgb(29, 29, 248);
     font-size: 16px;
     /* flex: 0 0 auto; */
     cursor: pointer;
-    padding: .75rem 1.5rem;
+    padding: .20rem 1.5rem;
 }
 
 .restofPage{
