@@ -39,7 +39,7 @@ const myHandler = () =>{
                   <Link to="/login" class="Login" onClick={myHandler}>
                     Log In
                   </Link>
-                  </button>
+                </button>
                 <button>
                   <Link to="/signup" class = "Sign-up" onClick={myHandler}>
                     Sign Up
