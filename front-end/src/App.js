@@ -1,8 +1,33 @@
 import { Link, Switch, Route } from 'react-router-dom';
 import './App.css';
 import login from './login';
-function App() {
+// function App() {
+// return (
+//   <div>
+//     <nav>
+//       <ul>
+//         <li>
+//           <Link to="/">Home</Link>
+//         </li>
+//         <li>
+//           <Link to="/SignUp">Sign Up</Link>
+//         </li>
+//         <li>
+//           <Link to="/login">Login</Link>
+//         </li>
+//       </ul>
+//     </nav>
 
+//     <Switch>
+//       <Route path="/SignUp"><SignUp /></Route>
+//       <Route path="/login"><Login /></Route>
+//       <Route path="/"><Home /></Route>
+//     </Switch>
+//   </div>
+// );
+// }
+
+export default App;
 const myHandler = () =>{
   console.log('User has clicked')
 };
@@ -22,11 +47,11 @@ const myHandler = () =>{
                   Personal
                 </Link>
               </li>
-              {/* <li>
+              { <li>
                 <Link to="/business" className="Business" onClick={myHandler}>
                   Business
                 </Link>
-              </li> */}
+              </li> }
               <li>
                 <Link to="/help" className="Help" onClick={myHandler}>
                   Help
@@ -65,6 +90,6 @@ const myHandler = () =>{
       </div>
     </div>
   );
-}
+
 
 export default App;
