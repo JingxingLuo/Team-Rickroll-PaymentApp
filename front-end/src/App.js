@@ -1,6 +1,6 @@
 import { Link, Switch, Route } from 'react-router-dom';
 import './App.css';
-
+import login from './login';
 function App() {
 
 const myHandler = () =>{
@@ -22,11 +22,11 @@ const myHandler = () =>{
                   Personal
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/business" className="Business" onClick={myHandler}>
                   Business
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/help" className="Help" onClick={myHandler}>
                   Help
@@ -52,7 +52,7 @@ const myHandler = () =>{
           <Switch>
             <Route path="/"><home/></Route>
             <Route path="/personal"><personal/></Route>
-            <Route path="/business"><business/></Route>
+            {/* <Route path="/business"><business/></Route> */}
             <Route path="/help"><help/></Route>
             <Route path="/login"><login/></Route>
             <Route path="/signup"><signup/></Route>
