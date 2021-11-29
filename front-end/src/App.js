@@ -26,8 +26,8 @@ import login from './login';
 //   </div>
 // );
 // }
+function App() {
 
-export default App;
 const myHandler = () =>{
   console.log('User has clicked')
 };
@@ -90,6 +90,6 @@ const myHandler = () =>{
       </div>
     </div>
   );
-
+              }
 
 export default App;
