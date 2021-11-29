@@ -1,38 +1,34 @@
 import { Link, Switch, Route } from 'react-router-dom';
 import './App.css';
+import login from './login';
+// function App() {
+// return (
+//   <div>
+//     <nav>
+//       <ul>
+//         <li>
+//           <Link to="/">Home</Link>
+//         </li>
+//         <li>
+//           <Link to="/SignUp">Sign Up</Link>
+//         </li>
+//         <li>
+//           <Link to="/login">Login</Link>
+//         </li>
+//       </ul>
+//     </nav>
 
-import Home from './home';
-import SignUp from './signup';
-import Login from './login';
-
+//     <Switch>
+//       <Route path="/SignUp"><SignUp /></Route>
+//       <Route path="/login"><Login /></Route>
+//       <Route path="/"><Home /></Route>
+//     </Switch>
+//   </div>
+// );
+// }
 function App() {
-return (
-  <div>
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/SignUp">Sign Up</Link>
-        </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-      </ul>
-    </nav>
 
-    <Switch>
-      <Route path="/SignUp"><SignUp /></Route>
-      <Route path="/login"><Login /></Route>
-      <Route path="/"><Home /></Route>
-    </Switch>
-  </div>
-);
-}
-
-export default App;
-/*const myHandler = () =>{
+const myHandler = () =>{
   console.log('User has clicked')
 };
   return (
@@ -51,11 +47,11 @@ export default App;
                   Personal
                 </Link>
               </li>
-              <li>
+              { <li>
                 <Link to="/business" className="Business" onClick={myHandler}>
                   Business
                 </Link>
-              </li>
+              </li> }
               <li>
                 <Link to="/help" className="Help" onClick={myHandler}>
                   Help
@@ -68,7 +64,7 @@ export default App;
                   <Link to="/login" class="Login" onClick={myHandler}>
                     Log In
                   </Link>
-                  </button>
+                </button>
                 <button>
                   <Link to="/signup" class = "Sign-up" onClick={myHandler}>
                     Sign Up
@@ -81,7 +77,7 @@ export default App;
           <Switch>
             <Route path="/"><home/></Route>
             <Route path="/personal"><personal/></Route>
-            <Route path="/business"><business/></Route>
+            {/* <Route path="/business"><business/></Route> */}
             <Route path="/help"><help/></Route>
             <Route path="/login"><login/></Route>
             <Route path="/signup"><signup/></Route>
@@ -94,6 +90,6 @@ export default App;
       </div>
     </div>
   );
-}
+              }
 
-export default App; */
+export default App;
