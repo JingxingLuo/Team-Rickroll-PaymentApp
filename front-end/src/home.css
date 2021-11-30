@@ -3,15 +3,16 @@
 .photos{
     display: block;
     position:relative;
-    /* margin-top: 10rem; */
     padding-top: 10rem;
     margin-left: auto;
     margin-right: auto;
-    
+    /* background: transparent ; */
     /* width: 60%; */
     border-radius: 15px;
     overflow: scroll;
-    z-index: 0;
+    z-index: 1;
+
+
     
 }
 
@@ -22,6 +23,7 @@
     width: 50%;
     margin-top: 1rem;
     text-align: center;
+    z-index: 1;
 }
 
 .restofPage{

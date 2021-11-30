@@ -23,12 +23,12 @@ function App() {
       <div class="header-buttons">
         <div class="button-list">
           <button class="login1">
-            <Link to="/Login" class="Login" >
+            <Link class="Login" to="/Login">
               Log In
             </Link>
           </button>
           <button class="signup1">
-            <Link to="/Signup" class="Sign-up" >
+            <Link class="Sign-up" to="/Signup">
               Sign Up
             </Link>
           </button>
