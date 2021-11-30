@@ -7,27 +7,27 @@ import Home from './home';
 
 function App() {
   return (
-    <div className="app-mount-point">
-      <div className="active-links">
-        <nav id="main-menu" className="nav-menu">
-          <ul className="main-menu-list">
+    <div class="app-mount-point">
+      <div class="active-links">
+        <nav id="main-menu" class="nav-menu">
+          <ul class="main-menu-list">
             <li>
-              <Link to="/" className="Home">Home</Link>
+              <Link to="/" class="Home">Home</Link>
             </li>
             <li>
-              <Link to="About" className="About">About Us</Link>
+              <Link to="About" class="About">About Us</Link>
             </li>
           </ul>
         </nav>
       </div>
-      <div className="header-buttons">
-        <div className="button-list">
-          <button>
+      <div class="header-buttons">
+        <div class="button-list">
+          <button class="login1">
             <Link to="/Login" class="Login" >
               Log In
             </Link>
           </button>
-          <button>
+          <button class="signup1">
             <Link to="/Signup" class="Sign-up" >
               Sign Up
             </Link>
