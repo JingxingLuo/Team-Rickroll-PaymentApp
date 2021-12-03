@@ -1,44 +1,26 @@
-import { Link, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
+import Login from './pages/login';
+import SignUp from './pages/signup';
+import Home from './pages/home';
+import About from './pages/about';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import './App.css';
-import Login from './login';
-import SignUp from './signup';
-import Home from './home';
 
 
 function App() {
   return (
     <div class="app-mount-point">
-      <div class="active-links">
-        <nav id="main-menu" class="nav-menu">
-          <ul class="main-menu-list">
-            <li>
-              <Link to="/" class="Home">Home</Link>
-            </li>
-            <li>
-              <Link to="About" class="About">About Us</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div class="header-buttons">
-        <div class="button-list">
-          <button class="login1">
-            <Link class="Login" to="/Login">
-              Log In
-            </Link>
-          </button>
-          <button class="signup1">
-            <Link class="Sign-up" to="/Signup">
-              Sign Up
-            </Link>
-          </button>
-        </div>
-      </div>
-      <Switch>
-        <Route path="/SignUp"><SignUp /></Route>
-        <Route path="/login"><Login /></Route>
-        <Route path="/"><Home /></Route>
-      </Switch>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path="/" exact component ={Home} />
+          <Route path="/SignUp" exact component = {SignUp} />
+          <Route path="/Login" exact component = {Login} />
+          <Route path="/About" exact component = {About} />
+        </Switch>
+        <Footer />
+      </Router>
     </div>
 
   );
