@@ -1,30 +1,32 @@
 import React from "react";
+import './login.css';
 
-const login = () => {
+function loginInfo() {
 
     const handleLogin = () => {
         console.log('Login Clicked');
     };
 
-    return(
-        <div>
-            <h1>Login</h1>
+    return (
+        <div class="login">
+            <h1>Welcome</h1>
 
-            <div>
+            <div class="content">
                 <div>
-                    <input />
+                    <input class="username" />
                 </div>
+                
                 <div>
                     <input type="password" />
                 </div>
                 <div>
-                    <button onClick={handleLogin}>Login</button>
-                    <button>Forgot Password</button>
+                    <button class="login" onClick={handleLogin}>Login</button>
+                    <button class="forgot">Forgot Password</button>
                 </div>
             </div>
         </div>
     );
-};
 
-// manually export in js
-export default login;
+}
+
+export default loginInfo;

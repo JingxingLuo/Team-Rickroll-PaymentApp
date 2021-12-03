@@ -1,0 +1,33 @@
+.signup {
+    margin-top: 50px;
+    margin: 0 auto;
+    width: 460px;
+    position: relative;
+    box-sizing: border-box;
+    color: #2c2e2f;
+    font-size: 100%;
+    text-align: center;
+}
+
+.content {
+    margin: 150px auto 0;
+    /* padding: 30px 30% 30px; */
+    border: 1px solid #eaeced;
+    overflow: hidden;
+    position: relative;
+}
+.username{
+    margin-bottom: 1rem;
+    height:25px;
+    font-size:16pt;
+}
+.password{
+    margin-bottom: 1rem;
+    width: 14rem;
+    height:25px;
+    font-size:14pt;
+}
+.button{
+    margin-top: 1rem;
+    width: 60%;
+}

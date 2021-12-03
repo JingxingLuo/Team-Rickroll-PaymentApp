@@ -1,5 +1,5 @@
 import React from "react";
-//import './signup.css';
+import './signup.css';
 const SignUp = () => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -19,23 +19,22 @@ const SignUp = () => {
     };
     
     return(
-        <div>
+        <div class="signup">
             <h1>Sign Up</h1>
-
-            <div>
+            <div class="content">
                 <div>
-                    <input value={username} onChange={(e) => setUsername(e.target.value)}/>
+                    <input class="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
                 </div>
                 <div>
-                    <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
+                    <input class="password" value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
                 </div>
                 <div>
-                <button onClick={handleSignUp}>Sign Up</button>
+                <button class="button" onClick={handleSignUp}>Sign Up</button>
                 </div>
             </div>
         </div>
     );
 };
 
-// manually export in js
+
 export default SignUp;
