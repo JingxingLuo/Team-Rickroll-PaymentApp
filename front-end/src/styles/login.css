@@ -25,6 +25,17 @@
 
 }
 
+input,
+input::-webkit-input-placeholder{
+    color:rgb(221, 188, 105);
+    font-size: 15px;
+    line-height: 1;
+}
+
+input[type=submit] {
+    color:black;
+}
+
 input[type=password] {
     margin-bottom: 1rem;
     width: 14rem;
