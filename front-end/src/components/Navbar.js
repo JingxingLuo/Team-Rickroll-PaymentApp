@@ -13,7 +13,7 @@ function Navbar() {
                 <Link to= "/"> Home</Link>
                 <Link to= "/about"> About Us</Link>
                 <Link to= "/login"> Log In</Link>
-                <Link to= "/signup"> Sign up</Link>
+                <Link to= "/signup"> Sign Up</Link>
             </div>
         </div>
     //     <div class="active-links">
