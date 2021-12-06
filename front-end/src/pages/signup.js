@@ -1,5 +1,5 @@
 import React from "react";
-import './signup.css';
+import '../styles/signup.css';
 const SignUp = () => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
