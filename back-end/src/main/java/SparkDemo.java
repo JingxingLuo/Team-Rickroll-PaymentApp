@@ -78,6 +78,7 @@ public class SparkDemo {
 
   public static Gson gson = new Gson();
   public static List<UserDto> userCollection = new ArrayList<>();
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   public static void main(String[] args) throws IOException {
     port(1234);
@@ -100,32 +101,17 @@ public class SparkDemo {
 //          System.out.println(userDto.getAmount());
 
       // handle duplicates
-      boolean usernameIsTaken = userCollection.stream()
-                      .anyMatch(existingUser -> existingUser.username.equals(userDto.username)); // if there are any
-      if(usernameIsTaken){
-        System.out.println("Username duplicate found, this account will not be registered");
-//        res.status(401);
-//        return "Username is taken";
-        var result = new SignUpResultDto(false, "Username duplicate found");
-        return gson.toJson(result); // must turn java object to json string before sending
-      }
+          Document potentialUser = myCollection.find(eq("username",userDto.getUsername())).first();
+          if(potentialUser != null){
+            System.out.println("Username duplicate found, this account will not be created.");
+            var result = new SignUpResultDto(false,"username duplicate found");
+            return gson.toJson(result);
+          }
+
       userCollection.add(userDto);
       myCollection.insertOne(userDto.toDocument());
           System.out.println("Sign-up succeed");
-////      // insert one document into your collection in ROBO 3T.
-//
-//     /*
-//      userCollection in Robo 3T
-//      */
-//
-//
-//
-//      /*
-//      transcationCollection in Robo 3T
-//       */
-//
-////
-////      transcationCollection.add(1)
+
 
       var result = new SignUpResultDto(true, null);
       return gson.toJson(result); // must turn java object to json string before sending
