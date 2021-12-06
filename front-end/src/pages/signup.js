@@ -1,8 +1,13 @@
 import React from "react";
+
 //import './signup.css';
 const SignUp = () => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
+
+    const rickRoll = () => {
+        console.log('You are rickRolled!');
+    };
 
     const handleSignUp = () => {
         console.log('Sign Up Clicked', username, password);
@@ -31,6 +36,9 @@ const SignUp = () => {
                 </div>
                 <div>
                 <button onClick={handleSignUp}>Sign Up</button>
+                </div>
+                <div>
+                <button onClick={rickRoll}>rick?</button>
                 </div>
             </div>
         </div>

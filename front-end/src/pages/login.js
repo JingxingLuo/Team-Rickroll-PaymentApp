@@ -1,5 +1,5 @@
-import React from "react";
-import { Component } from "react";
+import React,{ Component } from "react";
+
 import {Post} from './Post';
 
 class login extends Component {
@@ -22,7 +22,6 @@ class login extends Component {
     }
 
     onChange(e){
-
         this.setState({[e.target.name]: e.target.value});
         console.log(this.state);
     }
@@ -38,7 +37,7 @@ class login extends Component {
                 placeholder="NeverGonnaGiveYouUp" onChange={this.onChange}></input>
                                       
                 <label><br />Password:</label>
-                <input type="password" name="passwword" 
+                <input type="password" name="password" 
                 placeholder="NeverGonnaLetYouDown" onChange={this.onChange}></input>
                 <input type="submit" value="Submit" className="button" onClick={this.login}></input>
                 </div>
