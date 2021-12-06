@@ -5,7 +5,7 @@ import ReactDOM from "react-dom"
 const CashPayment = () => {
     const [from, setFrom] = React.useState('');
     const [to, setTo] = React.useState('');    
-    const [type, setType] = React.useState('');
+    const [type, setType] = React.useState('cash');
     const [amount, setAmount] = React.useState('');
 
     const handleCashPayment = () => {
@@ -37,7 +37,7 @@ const CashPayment = () => {
 
                     <form>
                     <select value ={type} onChange={(e) => setType(e.target.value)}>
-                        <option value = "cash">Cash</option>
+                        <option value = "cash" selected>Cash</option>
                     </select>
                     </form>
 

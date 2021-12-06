@@ -2,6 +2,7 @@ import com.google.gson.Gson;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import dto.CashPayment;
 import org.bson.Document;
 import org.eclipse.jetty.server.Authentication;
 
@@ -84,8 +85,9 @@ public class SparkDemo {
     MongoClient mongoClient = new MongoClient("localhost", 27017);
     System.out.println("Connected to mongodb");
     MongoDatabase db = mongoClient.getDatabase("MyDatabase");
-
     MongoCollection<Document> myCollection = db.getCollection("Users"); // myDatabase/Users
+
+    MongoCollection<Document> myTransactions = db.getCollection("Transactions");
 
         post("/api/SignUp", (req, res) -> {   // "SignUp" is case sensitive
       String body = req.body();
@@ -106,15 +108,26 @@ public class SparkDemo {
             var result = new SignUpResultDto(false,"username duplicate found");
             return gson.toJson(result);
           }
-
       userCollection.add(userDto);
       myCollection.insertOne(userDto.toDocument());
           System.out.println("Sign-up succeed");
-
-
       var result = new SignUpResultDto(true, null);
       return gson.toJson(result); // must turn java object to json string before sending
  });
+
+        post("/api/cashPayment", (req,res) -> {
+          String body = req.body();
+          System.out.println("This is the body: " + body);
+          System.out.println("hello1");
+          CashPayment cashDto = gson.fromJson(body, CashPayment.class);
+          System.out.println(cashDto.getFrom());
+          System.out.println(cashDto.getTo());
+          System.out.println("hello2");
+
+          myTransactions.insertOne(cashDto.toCashDocument());
+
+          return null;
+        });
 
 //    //connect "MyDatabase/Users" in Robot 3T
 //    MongoCollection<Document> userCollection = db.getCollection("Users");
