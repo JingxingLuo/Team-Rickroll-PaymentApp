@@ -14,6 +14,9 @@ function Home() {
                 services like PayPal or Venmo. Transfer money with us
                 and we will make sure you never see it again.
             </h2>
+            <form action="http://localhost:3000/cashPayment">
+            <button type="submit">Click me</button>
+            </form>
         </div>
     );
 

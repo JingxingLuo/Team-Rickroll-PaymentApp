@@ -8,6 +8,8 @@ import Footer from './components/Footer';
 import './App.css';
 import './styles/login.css';
 import './styles/signup.css';
+import './styles/cashPayment.css';
+import CashPayment from './pages/cashPayment';
 
 
 function App() {
@@ -21,6 +23,9 @@ function App() {
           <Route path="/Login" exact component = {Login} />
           <Route path="/About" exact component = {About} />
         </Switch>
+        <Switch>
+          <Route path="/CashPayment" exact component ={CashPayment} />
+          </Switch>
         <Footer />
       </Router>
     </div>

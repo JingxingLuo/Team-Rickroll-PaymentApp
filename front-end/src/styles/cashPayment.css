@@ -1,0 +1,14 @@
+.cashContainer{
+    /* margin-top: 50px; */
+    margin: auto;
+    width: 460px;
+    position: relative;
+    box-sizing: border-box;
+    color: #2c2e2f;
+    font-size: 100%;
+    text-align: center;
+}
+
+.input{
+    color: black;
+}
