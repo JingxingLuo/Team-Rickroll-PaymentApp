@@ -6,6 +6,8 @@ import About from './pages/about';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import './App.css';
+import './styles/login.css';
+import './styles/signup.css';
 
 
 function App() {
