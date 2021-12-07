@@ -9,7 +9,9 @@ import './App.css';
 import './styles/login.css';
 import './styles/signup.css';
 import './styles/cashPayment.css';
+import './styles/creditPayment.css';
 import CashPayment from './pages/cashPayment';
+import CreditPayment from './pages/creditPayment';
 
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
         </Switch>
         <Switch>
           <Route path="/CashPayment" exact component ={CashPayment} />
+          <Route path="/CreditPayment" exact component ={CreditPayment}/>
           </Switch>
         <Footer />
       </Router>

@@ -15,7 +15,10 @@ function Home() {
                 and we will make sure you never see it again.
             </h2>
             <form action="http://localhost:3000/cashPayment">
-            <button type="submit">Click me</button>
+            <button type="submit">Cash Payment tester</button>
+            </form>
+            <form action="http://localhost:3000/creditPayment">
+            <button type="credit">Credit Payment tester</button>
             </form>
         </div>
     );
