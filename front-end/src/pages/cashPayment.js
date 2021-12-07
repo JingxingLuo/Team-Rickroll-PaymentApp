@@ -64,11 +64,13 @@ const CashPayment = () => {
                 <div className="userbox">
                     <div className="user">
                         <div className="textedit">Username</div>
-                        <input className="inputBox" type="text" id="question"
+                        <input className="passBox" type="text"
                             value={from} onChange={(e) => setFrom(e.target.value)} />
+
                         <div className="textedit">Password</div>
-                        <input classNameName="passBox" type="password" value={password}
+                        <input className="passBox2" type="password" style={{width: "200px"}} value={password}
                             onChange={(e) => setPassword(e.target.value)} />
+
                     </div>
                     <div className="verify">
                         <button type="button" className="verifybutton"
