@@ -8,6 +8,7 @@ const CashPayment = () => {
     const [to, setTo] = React.useState('');
     const [type, setType] = React.useState('cash');
     const [amount, setAmount] = React.useState('');
+    const [notes, setNotes] = React.useState('');
 
     const handleCashPayment = () => {
         console.log('test', from, password, to, type, amount);
@@ -16,8 +17,8 @@ const CashPayment = () => {
             password: password,
             to: to,
             type: type,
-            amount: amount
-
+            amount: amount,
+            notes: notes
         };
         const settings = {
             method: 'post',
@@ -96,7 +97,9 @@ const CashPayment = () => {
                             value={amount} placeholder="Amount"
                             onChange={(e) => setAmount(e.target.value)} />
                         <div className="notes">Notes
-                            <textarea>
+                            <textarea
+                            value={notes}
+                            onChange={(e) => setNotes(e.target.value)}>
                             </textarea>
                         </div>
                     </div>
