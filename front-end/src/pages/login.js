@@ -6,6 +6,7 @@ const Login = () => {
     const [password, setPassword] = React.useState('');
     const [redirect, setRedirect] = React.useState(false);
     var storage = window.localStorage;
+    var storage2 = window.sessionStorage;
 
     const handleSubmit = () => {
         console.log("test", username, password);
@@ -23,9 +24,9 @@ const Login = () => {
             console.log(data);
             if(data.isSuccess){
                 setRedirect(true);
-                storage.setItem("isSuccess",JSON.stringify(data.isSuccess));
-                storage.setItem("username",JSON.stringify(data.username));
-                storage.setItem("amount",JSON.stringify(data.amount));
+                storage2.setItem("isSuccess",JSON.stringify(data.isSuccess));
+                storage2.setItem("username",JSON.stringify(data.username));
+                storage2.setItem("amount",JSON.stringify(data.amount));
             }
         }).catch(console.log);
     };
