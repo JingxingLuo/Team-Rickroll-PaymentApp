@@ -2,6 +2,8 @@ import com.google.gson.Gson;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import dto.CashPayment;
 import org.bson.Document;
 import org.eclipse.jetty.server.Authentication;
@@ -115,19 +117,146 @@ public class SparkDemo {
       return gson.toJson(result); // must turn java object to json string before sending
  });
 
-        post("/api/cashPayment", (req,res) -> {
+        // first button of cashPayment page
+        post("/api/cashPayment-verifyAccount", (req, res) -> {
           String body = req.body();
-          System.out.println("This is the body: " + body);
-          System.out.println("hello1");
-          CashPayment cashDto = gson.fromJson(body, CashPayment.class);
-          System.out.println(cashDto.getFrom());
-          System.out.println(cashDto.getTo());
-          System.out.println("hello2");
+          System.out.println("This is the Payer's account info: " + body);
+          String[] strArray = body.split(" |\\?|=|\n|,|\"");
+//          for(int i = 0; i < strArray.length; i ++){
+//            System.out.println(i +":" +strArray[i]);
+//          }
+          // str[3] is the username,  str[8] is the password
+          Document potentialUsername = myCollection.find(eq("username",strArray[3])).first();
+          if (potentialUsername != null){
+//            System.out.println("We found the document with the username");
+//            System.out.println(potentialUsername.get("password"));
+//            System.out.println(strArray[8]);
+            if(potentialUsername.get("password").toString().equals(strArray[8]) ){
+              System.out.println("We find the username and password!!!!");
+              return true;
+            }
+            else{
+              System.out.println("The password is wrong, try again!!!!");
+              return false;
+            }
+          }
+          //System.out.println("The guys password: " + potentialUsername.get("password"));
+          return null;
+    });
 
-          myTransactions.insertOne(cashDto.toCashDocument());
+    post("/api/cashPayment-verifyRecipient", (req, res) -> {
+      String body = req.body();
+      System.out.println("This is the recipient's account info: " + body);
+      String[] strArray = body.split(" |\\?|=|\n|,|\"");
+      Document potentialUsername = myCollection.find(eq("username",strArray[3])).first();
+      if(potentialUsername != null){
+        System.out.println("We found the recipient account!!!");
+        return true;
+      }
+      return null;
+    });
 
+        // last button of cashPayment page
+        post("/api/cashPayment", (req,res) -> {
+          boolean verifyAccount = false;
+          boolean checkAmount = false;
+          boolean checkRecipient = false;
+
+          String body = req.body();
+          //System.out.println("This is whole body: " + body);
+          String[] strArray = body.split(" |\\?|=|\n|,|\"");
+//          for(int i = 0; i < strArray.length; i ++){
+//            System.out.println(i +":" +strArray[i]);
+//          }
+          // str[3] is payer, str[8] is pw, str[13] is recipient, str[23] is amount, str[28] is notes
+          // str[28] notes probably needs to delete all "\n"
+
+          if((strArray[3]==null) || (strArray[8] == null)){
+            return "The input is missing" + false;
+          }
+
+          // find the document based on the input
+          else{
+            Document potentialUsername = myCollection.find(eq("username",strArray[3])).first();
+            if (potentialUsername != null){
+              if(potentialUsername.get("password").toString().equals(strArray[8]) ){
+                verifyAccount = true;
+              }
+              else{
+                System.out.println("The password is wrong, try again!!!!");
+                return false;
+              }
+            }
+          }
+          if(!strArray[23].isEmpty()){
+            checkAmount = true;
+          }
+          else{
+            System.out.println("The amount is empty!");
+            return "The AMOUNT is missing, try again" + false;
+          }
+
+          if(strArray[13] != null){
+            Document potentialRecipient = myCollection.find(eq("username",strArray[3])).first();
+            if(potentialRecipient != null){
+              checkRecipient = true;
+            }
+            else{
+              return "The recipient does not exist!" + false;
+            }
+          }
+
+          // if the previous steps pass, then store the cashPayment into Database
+          if(verifyAccount && checkAmount && checkRecipient){
+            //System.out.println("All pass!!!!!!!!!!!!!!!!!!!");
+
+            // Grab the documents of payer and recipient
+            Document payer = myCollection.find(eq("username",strArray[3])).first();
+            Document recipient = myCollection.find(eq("username",strArray[13])).first();
+
+            System.out.println("The payer has: " + payer.get("amount"));
+            System.out.println("The recipient has: " + recipient.get("amount"));
+            //System.out.println(payer.get("amount").getClass());  // this is double type
+
+            System.out.println("After transferring ------------------------------");
+            Double transfer = Double.valueOf(strArray[23]);
+            if((Double)payer.get("amount") < transfer){
+              System.out.println("The payer does not have enough money to transfer");
+              return "The payer is poor" + false;
+            }
+
+            Double loss =  ((Double)payer.get("amount") - transfer);
+            payer.replace("amount",loss);
+            System.out.println("Now the payer has: " + payer.get("amount"));
+            Double get =  ((Double)recipient.get("amount") + transfer);
+            recipient.replace("amount", get);
+            System.out.println("Now the recipient has: " + recipient.get("amount"));
+//            Document newPayer = new Document().append("username", payer.get("username"))
+//                                              .append("password", payer.get("password"))
+//                                              .append("amount",payer.get("amount"));
+//            Document newRecipient = new Document().append("username", recipient.get("username"))
+//                    .append("password", recipient.get("password"))
+//                    .append("amount",recipient.get("amount"));
+
+//            myCollection.deleteOne(payer);
+//            myCollection.deleteOne(recipient);
+//            myCollection.insertOne(newPayer);
+//            myCollection.insertOne(newRecipient);
+
+           // myCollection.updateOne(payer,"amount")
+
+            myCollection.updateOne(Filters.eq("username", strArray[3]), Updates.set("amount",loss));
+            myCollection.updateOne(Filters.eq("username", strArray[13]),Updates.set("amount",get));
+
+            CashPayment cashDto = gson.fromJson(body, CashPayment.class);
+//            System.out.println(cashDto.getFrom());
+//            System.out.println(cashDto.getTo());
+//            System.out.println(cashDto.getNotes());
+            myTransactions.insertOne(cashDto.toCashDocument());
+          }
           return null;
         });
+
 
 //    //connect "MyDatabase/Users" in Robot 3T
 //    MongoCollection<Document> userCollection = db.getCollection("Users");
