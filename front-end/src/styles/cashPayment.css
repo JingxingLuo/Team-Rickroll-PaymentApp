@@ -1,14 +1,142 @@
-.cashContainer{
+.paymentPage{
     /* margin-top: 50px; */
+    display: grid;
     margin: auto;
-    width: 460px;
+    width: 1200px;
+    height:auto; 
     position: relative;
-    box-sizing: border-box;
-    color: #2c2e2f;
+    /* box-sizing: border-box;
+    border: 1px solid;
+    color: #2c2e2f; */
     font-size: 100%;
+    text-align: center; 
+    grid-template:450px 400px / auto auto;
+    align-items:center;
+    justify-content:space-evenly;
+}
+
+.paymentSelect{
+    margin-bottom: 20px;
+    font-family: 'Courier New', Courier;
+}
+.userbox{
+    box-sizing: border-box;
+    border: 2px solid;
+    color: #2c2e2f;
+    padding: 50px;
+    border-radius: 8px;
+}
+
+.textedit{
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+.inputBox{
+    display: block;
+    width: 100%;
+    font-size: 20px;
+}
+
+.passBox{
+    display: block;
+    width: 200px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+input{
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+.verify{
+    margin-top: 10px;
+}
+.verifybutton{
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    background-color: #f8ce58;
+    padding: 6px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+.verifybutton:hover {
+    background-color: rgb(207, 205, 205);
+    color: black;
+  }
+
+.inputBoxRec{
+    display: block;
+    width: 200px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+.verifyRecipient{
+    display: block;
+    margin-top: 15px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    background-color: #f8ce58;
+    padding: 6px;
+    font-size: 20px;
+    cursor: pointer;
     text-align: center;
 }
 
+.checkuser{
+    margin-top: 10px;
+}
+
+.paymentType{
+    padding:15px;
+}
+
+.inputBoxPay{
+    display: block;
+    width: 240px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.notes{
+    
+    background-color: aliceblue;
+    width: fit-content;
+    padding: 10px;
+    border: 2px solid rgb(233, 233, 255);
+    margin: 20px auto 0 auto;
+}
+
+textarea{
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    height: 80px;
+    resize: none;
+}
+.submitButton{
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    background-color: #47b350;
+    padding: 14px 28px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+.submitButton:hover {
+    background-color: rgb(207, 205, 205);
+    color: black;
+  }
+.space{
+    margin-bottom: 60px;
+}
 .input{
     color: black;
 }

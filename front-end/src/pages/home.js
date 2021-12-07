@@ -5,7 +5,7 @@ function Home() {
 
     return (
         <div className="restofPage">
-            <img src = {CashTree} />
+            <img src = {CashTree} alt="pho" />
             <h1 class="motto">
                 If you're like us, you are certain money grows on trees.
             </h1>
