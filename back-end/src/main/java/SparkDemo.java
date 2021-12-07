@@ -67,13 +67,27 @@ class UserDto{
   }
 }
 
-class SignUpResultDto{
+class resultDto{
   Boolean isSuccess;
-  String error;
+  String message;
 
-  public SignUpResultDto(Boolean isSuccess, String error) {
+  public resultDto(Boolean isSuccess, String message) {
     this.isSuccess = isSuccess;
-    this.error = error;
+    this.message = message;
+  }
+}
+
+class currentUser{
+  Boolean isSuccess;
+  public String username;
+  public String password;
+  public double amount;
+
+  public currentUser(Boolean isSuccess, String username, String password, double amount) {
+    this.isSuccess = isSuccess;
+    this.username = username;
+    this.password = password;
+    this.amount = amount;
   }
 }
 
@@ -88,7 +102,6 @@ public class SparkDemo {
     System.out.println("Connected to mongodb");
     MongoDatabase db = mongoClient.getDatabase("MyDatabase");
     MongoCollection<Document> myCollection = db.getCollection("Users"); // myDatabase/Users
-
     MongoCollection<Document> myTransactions = db.getCollection("Transactions");
 
         post("/api/SignUp", (req, res) -> {   // "SignUp" is case sensitive
@@ -107,15 +120,38 @@ public class SparkDemo {
           Document potentialUser = myCollection.find(eq("username",userDto.getUsername())).first();
           if(potentialUser != null){
             System.out.println("Username duplicate found, this account will not be created.");
-            var result = new SignUpResultDto(false,"username duplicate found");
+            var result = new resultDto(false,"username duplicate found");
             return gson.toJson(result);
           }
       userCollection.add(userDto);
       myCollection.insertOne(userDto.toDocument());
           System.out.println("Sign-up succeed");
-      var result = new SignUpResultDto(true, null);
+      var result = new resultDto(true, null);
       return gson.toJson(result); // must turn java object to json string before sending
  });
+        post("/api/login", (req,res) -> {
+          String body = req.body();
+          System.out.println("This is login information: " + body);
+          String[] strArray = body.split(" |\\?|=|\n|,|\"");
+          Document potentialUsername = myCollection.find(eq("username",strArray[3])).first();
+          if (potentialUsername != null){
+            if(potentialUsername.get("password").toString().equals(strArray[8]) ){
+              System.out.println("We find the username and password!!!!");
+              var result = new currentUser(true, String.valueOf(potentialUsername.get("username")),
+                      String.valueOf(potentialUsername.get("password"))
+              ,((Double) potentialUsername.get("amount")));
+              return gson.toJson(result);
+            }
+            else{
+              System.out.println("The password is wrong, try again!!!!");
+              var result = new resultDto(false, "password is wrong");
+              return gson.toJson(result);
+            }
+          }
+          System.out.println("We do not find the username for the account");
+          var result = new resultDto(false, "username does not exist");
+          return gson.toJson(result);
+    });
 
         // first button of cashPayment page
         post("/api/cashPayment-verifyAccount", (req, res) -> {
