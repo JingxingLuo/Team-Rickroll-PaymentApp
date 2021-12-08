@@ -46,6 +46,11 @@ const Home = ()=> {
     }
     }
 
+    const handleLogout = () => {
+        storage2.clear();
+
+    };
+
     return (
         <div className="restofPage">
             <img src = {CashTree} alt="pho" />
@@ -63,6 +68,10 @@ const Home = ()=> {
             </form>
             <form action="http://localhost:3000/creditPayment">
             <button type="credit">Credit Payment tester</button>
+            </form>
+
+            <form action="http://localhost:3000/loginSuceeded">
+            <button type="logoff" onClick={handleLogout}>Want to Log out?</button>
             </form>
         </div>
     );
