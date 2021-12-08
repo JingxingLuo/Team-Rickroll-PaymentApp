@@ -12,9 +12,17 @@ import './styles/cashPayment.css';
 import './styles/creditPayment.css';
 import CashPayment from './pages/cashPayment';
 import CreditPayment from './pages/creditPayment';
+import React, { useEffect, useState } from 'react';
 
 
 function App() {
+  var [login,setLogin] = React.useState(false);
+  const storage2 = window.sessionStorage;
+
+  if(storage2.getItem("isSuccess") == 'true'){
+    console.log("TEST");
+  }
+
   return (
     <div class="app-mount-point">
       <Router>

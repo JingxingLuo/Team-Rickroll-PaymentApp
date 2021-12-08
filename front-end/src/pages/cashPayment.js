@@ -9,6 +9,11 @@ const CashPayment = () => {
     const [type, setType] = React.useState('cash');
     const [amount, setAmount] = React.useState('');
     const [notes, setNotes] = React.useState('');
+    var [messages, setMessages] = React.useState('');
+    const [red,setRed] = React.useState(false);
+
+    const [recipientRed,setRecipientRed] = React.useState(false);
+    var [recipientMessage, setRecipientMessage] = React.useState(false);
 
     const handleCashPayment = () => {
         console.log('test', from, password, to, type, amount);
@@ -39,7 +44,20 @@ const CashPayment = () => {
             body: JSON.stringify(body), //to json string
         };
         fetch('/api/cashPayment-verifyAccount', settings) // makes http client calls 
-            .catch(console.log);
+            .then(res => res.json())
+            .then(data => {
+             var obj = Object.entries(data).map(([key, value]) => ({key, value}));
+             console.log(obj[0].value);
+             if(obj[0].value == false){
+                setRed(true);
+             }
+             else{
+                 setRed(false);
+             }
+             console.log(obj[1].value);
+             setMessages(obj[1].value);
+                console.log(messages);
+            });
     };
 
     const handleRecipient = () => {
@@ -52,9 +70,22 @@ const CashPayment = () => {
             body: JSON.stringify(body), //to json string
         };
         fetch('/api/cashPayment-verifyRecipient', settings) // makes http client calls 
-            .catch(console.log);
+        .then(res => res.json())
+        .then(data => {
+            var obj = Object.entries(data).map(([key, value]) => ({key, value}));
+            console.log(obj[0].value);
+            if(obj[0].value == false){
+               setRecipientRed(true);
+            }
+            else{
+                setRecipientRed(false);
+            }
+            setRecipientMessage(obj[1].value);
+           });
     };
+    
     return (
+
 
         <div>
             <div>
@@ -77,6 +108,10 @@ const CashPayment = () => {
                         <button type="button" className="verifybutton1"
                             onClick={handleVerify}>Verify My Account</button>
                     </div>
+                    <div className = "" style = {{paddingTop: "30px"}}>
+                        <div>{red ? <div style = {{color: "red"}}>{messages}</div> 
+                        : <div style = {{color: "green"}}>{messages}</div> }</div>
+                    </div>
                 </div>
 
                 <div className="userbox1">
@@ -87,6 +122,10 @@ const CashPayment = () => {
                     </div>
                     <div className="checkuser1">
                         <button className="verifyRecipient1" onClick={handleRecipient}>Check Recipient</button>
+                    </div>
+                    <div className = "" style = {{paddingTop: "30px"}}>
+                        <div>{recipientRed ? <div style = {{color: "red"}}>{recipientMessage}</div> 
+                        : <div style = {{color: "green"}}>{recipientMessage}</div> }</div>
                     </div>
                 </div>
 

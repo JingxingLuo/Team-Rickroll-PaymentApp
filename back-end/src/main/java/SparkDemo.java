@@ -148,9 +148,11 @@ public class SparkDemo {
               return gson.toJson(result);
             }
           }
-          System.out.println("We do not find the username for the account");
-          var result = new resultDto(false, "username does not exist");
-          return gson.toJson(result);
+          else {
+            System.out.println("We do not find the username for the account");
+            var result = new resultDto(false, "username does not exist");
+            return gson.toJson(result);
+          }
     });
 
         // first button of cashPayment page
@@ -164,20 +166,20 @@ public class SparkDemo {
           // str[3] is the username,  str[8] is the password
           Document potentialUsername = myCollection.find(eq("username",strArray[3])).first();
           if (potentialUsername != null){
-//            System.out.println("We found the document with the username");
-//            System.out.println(potentialUsername.get("password"));
-//            System.out.println(strArray[8]);
             if(potentialUsername.get("password").toString().equals(strArray[8]) ){
               System.out.println("We find the username and password!!!!");
-              return true;
+              var result = new resultDto(true, "❀We found the user❀");
+              return gson.toJson(result);
             }
             else{
               System.out.println("The password is wrong, try again!!!!");
-              return false;
+              var result = new resultDto(false, "×Password is wrong×");
+              return gson.toJson(result);
             }
           }
           //System.out.println("The guys password: " + potentialUsername.get("password"));
-          return null;
+          var result = new resultDto(false, "×Can not find user, try again×");
+          return gson.toJson(result);
     });
 
     post("/api/cashPayment-verifyRecipient", (req, res) -> {
@@ -187,9 +189,11 @@ public class SparkDemo {
       Document potentialUsername = myCollection.find(eq("username",strArray[3])).first();
       if(potentialUsername != null){
         System.out.println("We found the recipient account!!!");
-        return true;
+        var result = new resultDto(true, "❀We found the recipient!❀");
+        return gson.toJson(result);
       }
-      return null;
+      var result = new resultDto(false, "×Can not find the recipient×");
+      return gson.toJson(result);
     });
 
         // last button of cashPayment page
