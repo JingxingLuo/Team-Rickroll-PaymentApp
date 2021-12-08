@@ -6,14 +6,9 @@
     padding-top: 10rem;
     margin-left: auto;
     margin-right: auto;
-    /* background: transparent ; */
-    /* width: 60%; */
     border-radius: 15px;
     overflow: scroll;
     z-index: 1;
-
-
-    
 }
 
 .motto{
@@ -30,7 +25,6 @@
     background-color: #d2eedc;
     padding-bottom: 100%;
     box-sizing: border-box;
-    /* margin: auto; */
     margin-bottom: -1rem;
     margin-right: -1rem;
 }

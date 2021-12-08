@@ -1,14 +1,10 @@
 
 .paymentPage{
-    /* margin-top: 50px; */
     display: grid;
     margin: auto;
     width: 1200px;
     height: auto; 
     position: relative;
-    /* box-sizing: border-box;
-    border: 1px solid;
-    color: #2c2e2f; */
     font-size: 100%;
     text-align: center; 
     grid-template:400px 800px / auto auto;
@@ -39,9 +35,8 @@
     font-size: 20px;
 }
 
-.passBox{
+.passBox2{
     display: block;
-    width: 200px;
     margin-top: 10px;
     font-size: 20px;
 }

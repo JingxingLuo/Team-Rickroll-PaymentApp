@@ -22,25 +22,28 @@ const SignUp = () => {
         fetch('/api/SignUp', settings) // makes http client calls 
             .catch(console.log);
     };
-    
-    return(
-        <div>
-            <h1>Sign Up</h1>
 
-            <div>
-                <div>
-                    <input value={username} onChange={(e) => setUsername(e.target.value)}/>
-                </div>
-                <div>
-                    <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
-                </div>
-                <div>
-                <button onClick={handleSignUp}>Sign Up</button>
-                </div>
-                <div>
-                <button onClick={rickRoll}>rick?</button>
-                </div>
-            </div>
+    return (
+        <div className="signup">
+            <main className="form-signup">
+                <form>
+                    <h1 className="">Sign Up</h1>
+                    <h2 className="title">Username</h2>
+                    <input type="username" id="inputusername" className="form-control"
+                        placeholder="Rick" required autoFocus
+                        value={username} onChange={(e) => setUsername(e.target.value)} />
+
+                    <h2 className="title">Password</h2>
+                    <input id="inputPassword" value={password} type="password"
+                        className="form-control" placeholder="" required value={password}
+                        onChange={(e) => setPassword(e.target.value)} />
+
+                    <button className="submitButtonsig" onClick={handleSignUp}>Sign Up</button>
+                    <button className="submitButtonsig" onClick={rickRoll}>rick?</button>
+
+
+                </form>
+            </main>
         </div>
     );
 };

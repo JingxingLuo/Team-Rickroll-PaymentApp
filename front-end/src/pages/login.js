@@ -1,6 +1,8 @@
 import React from "react";
 import { Redirect } from "react-router";
 
+
+
 const Login = () => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -19,36 +21,36 @@ const Login = () => {
             body: JSON.stringify(body),
         };
         fetch('/api/login', settings)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if(data.isSuccess){
-                setRedirect(true);
-                storage2.setItem("isSuccess",JSON.stringify(data.isSuccess));
-                storage2.setItem("username",JSON.stringify(data.username));
-                storage2.setItem("amount",JSON.stringify(data.amount));
-            }
-        }).catch(console.log);
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.isSuccess) {
+                    setRedirect(true);
+                    storage2.setItem("isSuccess", JSON.stringify(data.isSuccess));
+                    storage2.setItem("username", JSON.stringify(data.username));
+                    storage2.setItem("amount", JSON.stringify(data.amount));
+                }
+            }).catch(console.log);
     };
-    
-    if(redirect) {
-        return <Redirect to = "/cashPayment" />;
+
+    if (redirect) {
+        return <Redirect to="/Loginsuccess" />;
     }
 
     return (
-        <div className = "login">
-            <main className = "form-signin">
+        <div className="login">
+            <main className="form-signin">
                 <form>
-                    <h1 className = "">Sign in</h1>
-                    <h2 className = "title">Username</h2>
-                    <input type = "username" id="inputUsername" className="form-control" placeholder="Rick" required autoFocus
-                    value={username} onChange={(e) => setUsername(e.target.value)}/>
+                    <h1 className="">Sign in</h1>
+                    <h2 className="title">Username</h2>
+                    <input type="username" id="inputUsername" className="form-control" placeholder="Rick" required autoFocus
+                        value={username} onChange={(e) => setUsername(e.target.value)} />
 
-                    <h2 className = "title">Password</h2>
-                    <input type = "password" id="inputPassword" className="form-control" placeholder="" required
-                    value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <h2 className="title">Password</h2>
+                    <input type="password" id="inputPassword" className="form-control" placeholder="" required
+                        value={password} onChange={(e) => setPassword(e.target.value)} />
 
-                    <button className="" type="button" onClick={handleSubmit}>Submit</button>
+                    <button className="submitButtonlog" type="button" onClick={handleSubmit}>Submit</button>
                 </form>
             </main>
         </div>
@@ -84,11 +86,11 @@ const Login = () => {
 //             <div className = "login container">
 //                 <div class = "login-body">
 //                 <h1 class = "login-title">Login</h1>
-                
+
 //                 <label>Username:</label>
 //                 <input type="text" name="username" 
 //                 placeholder="NeverGonnaGiveYouUp" onChange={this.onChange}></input>
-                                      
+
 //                 <label><br />Password:</label>
 //                 <input type="password" name="password" 
 //                 placeholder="NeverGonnaLetYouDown" onChange={this.onChange}></input>
@@ -106,7 +108,7 @@ const Login = () => {
 //     };
 
 //     return(
-        
+
 //         <div class = "login container">
 //             <div class = "login-body">
 //                 <h1 class = "login-title">Sign-in</h1>

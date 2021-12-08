@@ -1,25 +1,21 @@
-.paymentPage{
-    /* margin-top: 50px; */
+.paymentPage1{
     display: grid;
     margin: auto;
     width: 1200px;
     height:auto; 
     position: relative;
-    /* box-sizing: border-box;
-    border: 1px solid;
-    color: #2c2e2f; */
     font-size: 100%;
     text-align: center; 
-    grid-template:450px 400px / auto auto;
+    grid-template:450px 500px / auto auto;
     align-items:center;
     justify-content:space-evenly;
 }
 
-.paymentSelect{
+.paymentSelect1{
     margin-bottom: 20px;
     font-family: 'Courier New', Courier;
 }
-.userbox{
+.userbox1{
     box-sizing: border-box;
     border: 2px solid;
     color: #2c2e2f;
@@ -27,20 +23,20 @@
     border-radius: 8px;
 }
 
-.textedit{
+.textedit1{
     text-align: left;
     margin-top: 15px;
     margin-bottom: 5px;
 }
-.inputBox{
+.inputBox1{
     display: block;
     width: 100%;
     font-size: 20px;
 }
 
-.passBox{
+.passBox1{
     display: block;
-    width: 200px;
+    width: 270px;
     margin-top: 10px;
     font-size: 20px;
 }
@@ -50,11 +46,12 @@ input{
     width: 100%;
     margin-top: 10px;
 }
-.verify{
+.verify1{
     margin-top: 10px;
 }
-.verifybutton{
+.verifybutton1{
     display: block;
+    margin-top: 20px;
     width: 100%;
     border: none;
     border-radius: 8px;
@@ -64,20 +61,20 @@ input{
     cursor: pointer;
     text-align: center;
 }
-.verifybutton:hover {
+.verifybutton1:hover {
     background-color: rgb(207, 205, 205);
     color: black;
   }
 
-.inputBoxRec{
+.inputBoxRec1{
     display: block;
     width: 200px;
     margin-top: 10px;
     font-size: 20px;
 }
-.verifyRecipient{
+.verifyRecipient1{
     display: block;
-    margin-top: 15px;
+    margin-top: 20px;
     width: 100%;
     border: none;
     border-radius: 8px;
@@ -88,22 +85,22 @@ input{
     text-align: center;
 }
 
-.checkuser{
+.checkuser1{
     margin-top: 10px;
 }
 
-.paymentType{
+.paymentType1{
     padding:15px;
 }
 
-.inputBoxPay{
+.inputBoxPay1{
     display: block;
     width: 240px;
     margin-top: 10px;
     font-size: 20px;
 }
 
-.notes{
+.notes1{
     
     background-color: aliceblue;
     width: fit-content;
@@ -119,24 +116,24 @@ textarea{
     height: 80px;
     resize: none;
 }
-.submitButton{
+.submitButton1{
     display: block;
     width: 100%;
     border: none;
     border-radius: 8px;
-    background-color: #47b350;
+    background-color: #b0c1cc;
     padding: 14px 28px;
     font-size: 20px;
     cursor: pointer;
     text-align: center;
 }
-.submitButton:hover {
+.submitButton1:hover {
     background-color: rgb(207, 205, 205);
     color: black;
   }
-.space{
+.space1{
     margin-bottom: 60px;
 }
-.input{
+.input1{
     color: black;
 }

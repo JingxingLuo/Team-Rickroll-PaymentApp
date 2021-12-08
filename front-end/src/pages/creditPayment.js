@@ -21,7 +21,7 @@ const CreditPayment = () => {
             type: type,
             creditNumber: creditNumber,
             amount: amount
-            
+
 
         };
         const settings = {
@@ -70,10 +70,10 @@ const CreditPayment = () => {
                 <div className="userbox">
                     <div className="user">
                         <div className="textedit">Username</div>
-                        <input className="inputBox" type="text" id="question"
+                        <input className="inputBox" type="text" id="inputBox"
                             value={from} onChange={(e) => setFrom(e.target.value)} />
                         <div className="textedit">Password</div>
-                        <input classNameName="passBox" type="password" value={password}
+                        <input className="passBox2" style={{ width: "400px" }} type="password" value={password}
                             onChange={(e) => setPassword(e.target.value)} />
                     </div>
                     <div className="verify">
@@ -94,11 +94,7 @@ const CreditPayment = () => {
                 </div>
 
                 <div className="userbox">
-                    {/* <h1 className="paymentSelect">Credit Amount</h1> */}
                     <div className="paymentType">
-                        {/* <label for="ccn">Credit Card Number:</label>
-                        <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,16}"
-                         autocomplete="cc-number" maxlength="16" /> */}
                         <form class="credit-card">
                             <div class="form-header">
                                 <h4 class="title">Credit card detail</h4>
@@ -106,7 +102,7 @@ const CreditPayment = () => {
                             <div class="form-body">
                                 <input type="text" class="creditCardText" placeholder="Card Number"
                                     inputmode="numeric" pattern="[0-9\s]{16,}" maxlength="19" placeholder="xxxx xxxx xxxx xxxx"
-                                    value={creditNumber} 
+                                    value={creditNumber}
                                     onChange={(e) => setCreditNumber(e.target.value)} />
                                 <span class="validity"></span>
                                 <div class="date-field">
@@ -156,7 +152,7 @@ const CreditPayment = () => {
                         <input className="inputBoxPay" type="number" min="0.00"
                             value={amount} placeholder="Amount"
                             onChange={(e) => setAmount(e.target.value)} />
-                            
+
                         <div className="notes">Notes
                             <textarea>
                             </textarea>

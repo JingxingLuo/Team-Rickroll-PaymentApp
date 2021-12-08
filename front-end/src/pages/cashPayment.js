@@ -61,42 +61,42 @@ const CashPayment = () => {
                 <h1 className="header">Transfer with Cash</h1>
             </div>
 
-            <div className="paymentPage">
-                <div className="userbox">
-                    <div className="user">
-                        <div className="textedit">Username</div>
-                        <input className="passBox" type="text"
+            <div className="paymentPage1">
+                <div className="userbox1">
+                    <div className="user1">
+                        <div className="textedit1">Username</div>
+                        <input className="passBox1" type="text"
                             value={from} onChange={(e) => setFrom(e.target.value)} />
 
-                        <div className="textedit">Password</div>
-                        <input className="passBox2" type="password" style={{width: "200px"}} value={password}
+                        <div className="textedit1">Password</div>
+                        <input className="passBox1" type="password" style={{width: "270px"}} value={password}
                             onChange={(e) => setPassword(e.target.value)} />
 
                     </div>
-                    <div className="verify">
-                        <button type="button" className="verifybutton"
+                    <div className="verify1">
+                        <button type="button" className="verifybutton1"
                             onClick={handleVerify}>Verify My Account</button>
                     </div>
                 </div>
 
-                <div className="userbox">
-                    <div className="recipient">
-                        <div className="textedit">Recipient</div>
-                        <input type="text" className="inputBoxRec" value={to}
+                <div className="userbox1">
+                    <div className="recipient1">
+                        <div className="textedit1">Recipient</div>
+                        <input type="text" className="inputBoxRec1" value={to}
                             onChange={(e) => setTo(e.target.value)} />
                     </div>
-                    <div className="checkuser">
-                        <button className="verifyRecipient" onClick={handleRecipient}>Check Recipient</button>
+                    <div className="checkuser1">
+                        <button className="verifyRecipient1" onClick={handleRecipient}>Check Recipient</button>
                     </div>
                 </div>
 
-                <div className="userbox">
-                    <h1 className="paymentSelect">Cash Amount</h1>
-                    <div className="paymentType">
-                        <input className="inputBoxPay" type="number" min="0.00"
+                <div className="userbox1">
+                    <h1 className="paymentSelect1">Cash Amount</h1>
+                    <div className="paymentType1">
+                        <input className="inputBoxPay1" type="number" min="0.00"
                             value={amount} placeholder="Amount"
                             onChange={(e) => setAmount(e.target.value)} />
-                        <div className="notes">Notes
+                        <div className="notes1">Notes
                             <textarea
                             value={notes}
                             onChange={(e) => setNotes(e.target.value)}>
@@ -106,12 +106,12 @@ const CashPayment = () => {
 
                 </div>
                 <div >
-                    <button type="button" className="submitButton"
+                    <button className="submitButton1" type="button" 
                         onClick={handleCashPayment}>Send</button>
                 </div>
             </div>
 
-            <div className="space">
+            <div className="space1">
 
             </div>
         </div>
