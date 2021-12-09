@@ -7,6 +7,7 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
+import dto.BasePaymentDto;
 import dto.CashPayment;
 import org.bson.Document;
 import org.eclipse.jetty.server.Authentication;
@@ -95,6 +96,7 @@ public class SparkDemo {
 
   public static Gson gson = new Gson();
   public static List<UserDto> userCollection = new ArrayList<>();
+  public static List<BasePaymentDto> someList = new ArrayList<>();
 
   public static void main(String[] args) throws IOException {
     port(1234);
@@ -106,35 +108,42 @@ public class SparkDemo {
 
 
     post("/api/Transactions" , (req, res) -> {
+      String body = req.body();
+      System.out.println("This is the body: " + body);
       ArrayList<String> test = new ArrayList<>();
-      Document a = myTransactions.find(eq("from", "awzum")).first();
+      Document a = myTransactions.find(eq("from", "aaa")).first();
+      System.out.println(a);
       System.out.println("Transaction pressed!!!");
-      System.out.println("from: " + a.toString());
-      CashPayment b = CashPayment.fromDocument(a);
-      return "<h1> TEST </h1>";
+      //System.out.println("from: " + a.toString());
+      var b = CashPayment.fromDocument(a);
+      System.out.println("Transaction pressed223!!!");
+      var result = new resultDto(false,"Test");
+      var cash = new CashPayment(123.3);
+      System.out.println("Transaction pressed22!!!");
+
+
+
+      return gson.toJson(b);
     });
-    FindIterable<Document> iterDoc = myTransactions.find();
-    System.out.println("Listing all trans");
-    Iterator it = iterDoc.iterator();
-    while (it.hasNext()) {
-      System.out.println(it.next());
-    }
-    Document a = myTransactions.find(eq("from", "awzum")).first();
-    System.out.println("from: " + a.toString());
-    CashPayment b = CashPayment.fromDocument(a);
-    System.out.println(b.getUniqueId());
-    System.out.println(b.getFrom());
-    System.out.println(b.getTo());
-    System.out.println(b.getNotes());
-    System.out.println(b.getType());
-    System.out.println(b.getAmount());
-
-
-
+//    FindIterable<Document> iterDoc = myTransactions.find();
+//    System.out.println("Listing all trans");
+//    Iterator it = iterDoc.iterator();
+//    while (it.hasNext()) {
+//      System.out.println(it.next());
+//    }
+//    Document a = myTransactions.find(eq("from", "awzum")).first();
+//    System.out.println("from: " + a.toString());
+//    CashPayment b = CashPayment.fromDocument(a);
+//    System.out.println(b.getUniqueId());
+//    System.out.println(b.getFrom());
+//    System.out.println(b.getTo());
+//    System.out.println(b.getNotes());
+//    System.out.println(b.getType());
+//    System.out.println(b.getAmount());
 
         post("/api/SignUp", (req, res) -> {   // "SignUp" is case sensitive
       String body = req.body();
-      //System.out.println("This is the body: " + body);
+      System.out.println("This is the body: " + body);
       UserDto userDto = gson.fromJson(body, UserDto.class);
 //          System.out.println(userDto.getUsername());
 //          System.out.println(userDto.getPassword());
@@ -148,7 +157,7 @@ public class SparkDemo {
           Document potentialUser = myCollection.find(eq("username",userDto.getUsername())).first();
           if(potentialUser != null){
             System.out.println("Username duplicate found, this account will not be created.");
-            var result = new resultDto(false,"username duplicate found");
+            var result = new resultDto(false,"User already exists!");
             return gson.toJson(result);
           }
       userCollection.add(userDto);
@@ -157,6 +166,7 @@ public class SparkDemo {
       var result = new resultDto(true, null);
       return gson.toJson(result); // must turn java object to json string before sending
  });
+
         post("/api/login", (req,res) -> {
           String body = req.body();
           System.out.println("This is login information: " + body);

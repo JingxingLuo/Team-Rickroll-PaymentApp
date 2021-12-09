@@ -9,6 +9,7 @@ const Home = ()=> {
     const storage2 = window.sessionStorage;
     const username = storage2.getItem("username");
     const pocket = storage2.getItem("amount");
+    const [seen, setSeen] = React.useState(false);
 
 
     // async function test(){
@@ -37,31 +38,40 @@ const Home = ()=> {
             setName(username);
             setAmount(pocket);
             setCheck(false);
+            setSeen(true);
+            if(username == "Stranger"){
+                setSeen(false);
+            }
         }
     else{
         console.log(storage2.getItem("username"));
         storage2.setItem("username", "Stranger");
         storage2.setItem("amount", "0");
         setCheck(true);
+
     }
     }
 
     const handleLogout = () => {
         storage2.clear();
-
     };
 
     return (
         <div className="restofPage">
             <img src = {CashTree} alt="pho" />
             <h1 class="motto">
-                <div><h2>{name ? 'Hello! ' + name + '\nYou have ' +"$"+ amount + ' in your pocket' : 'Please login!'}</h2></div>
+                <div><h2>{seen ? 'Hello! ' + name + '\n,You have ' +"$"+ amount
+                 + ' in your pocket' : 'Hello Stranger, register today and get free $1000 !' }</h2></div>
                 If you're like us, you are certain money grows on trees.
             </h1>
             <h2 class="motto">
-                Don't waste your time with other money transfering
-                services like PayPal or Venmo. Transfer money with us
-                and we will make sure you never see it again.
+                <div>
+                    {seen ? <div></div>: "Don't waste your time with other money transfering" +
+               " services like PayPal or Venmo. Transfer money with us" +
+                "and we will make sure you never see it again." }
+                </div>
+
+
             </h2>
             <form action="http://localhost:3000/cashPayment">
             <button type="submit">Cash Payment tester</button>
@@ -69,10 +79,13 @@ const Home = ()=> {
             <form action="http://localhost:3000/creditPayment">
             <button type="credit">Credit Payment tester</button>
             </form>
-
-            <form action="http://localhost:3000/loginSuceeded">
+            
+            <div>{seen ? <form action="http://localhost:3000/Logoutsuccess">
             <button type="logoff" onClick={handleLogout}>Want to Log out?</button>
-            </form>
+            </form> : <div></div> } </div>
+            {/* <form action="http://localhost:3000/Logoutsuccess">
+            <button type="logoff" onClick={handleLogout}>Want to Log out?</button>
+            </form> */}
         </div>
     );
 

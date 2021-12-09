@@ -88,7 +88,7 @@ public class CashPayment extends BasePaymentDto {
   public static CashPayment fromDocument(Document document) {
     var payment = new CashPayment(document.get("from").toString(), document.get("to").toString(),
             document.get("type").toString(), document.getDouble("amount"), document.get("notes").toString());
-    payment.setUniqueId(document.getObjectId("_id").toHexString());
+
     return payment;
   }
 }

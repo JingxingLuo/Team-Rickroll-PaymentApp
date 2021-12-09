@@ -1,4 +1,7 @@
 import { BrowserRouter as Router,  Switch, Route } from 'react-router-dom';
+import LoginSuceeded from './pages/loginSuceeded';
+import SignupSuceeded from './pages/signupSuceeded';
+import Logout from './pages/logout';
 import Login from './pages/login';
 import SignUp from './pages/signup';
 import Home from './pages/home';
@@ -38,6 +41,9 @@ function App() {
         <Switch>
           <Route path="/CashPayment" exact component ={CashPayment} />
           <Route path="/CreditPayment" exact component ={CreditPayment}/>
+          <Route path="/Loginsuccess" exact component ={LoginSuceeded}/>
+          <Route path="/Logoutsuccess" exact component ={Logout}/>
+          <Route path="/signupsuccess" exact component ={SignupSuceeded}/>
           </Switch>
         <Footer />
       </Router>

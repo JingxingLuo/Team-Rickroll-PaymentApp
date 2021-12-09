@@ -1,9 +1,13 @@
 import React from "react";
+import { Redirect } from "react-router";
 
 //import './signup.css';
 const SignUp = () => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [signUpSuccess,setsignUpSuccess] = React.useState(false);
+    const [messages,setMessages] = React.useState('');
+    const [redirect, setRedirect] = React.useState(false);
 
     const rickRoll = () => {
         console.log('You are rickRolled!');
@@ -20,8 +24,24 @@ const SignUp = () => {
             body: JSON.stringify(body), //to json string
         };
         fetch('/api/SignUp', settings) // makes http client calls 
-            .catch(console.log);
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if(!data.isSuccess){
+                setsignUpSuccess(false);
+                setMessages("×Account already exists×")
+            }
+            else{
+                setsignUpSuccess(true);
+                setRedirect(true);
+            }
+        });
+
     };
+
+    if (redirect) {
+        return <Redirect to="/signupsuccess" />;
+    }
 
     return (
         <div className="signup">
@@ -38,8 +58,18 @@ const SignUp = () => {
                         className="form-control" placeholder="" required value={password}
                         onChange={(e) => setPassword(e.target.value)} />
 
-                    <button className="submitButtonsig" onClick={handleSignUp}>Sign Up</button>
-                    <button className="submitButtonsig" onClick={rickRoll}>rick?</button>
+                    <div className = "" style = {{paddingTop: "5px"}}>
+                        <div>{setsignUpSuccess ? <div style = {{color: "red"}}>{messages}</div> 
+                        : <div style = {{color: "green"}}>{messages}</div> }</div>
+                    </div>    
+
+                    <div style = {{padding: "0px"}}>
+                        <button type="button" className="submitButtonsig"
+                            onClick={handleSignUp}>Sign Up</button>
+                    </div>
+                    
+
+                    {/* <button className="submitButtonsig" onClick={rickRoll}>rick?</button> */}
 
 
                 </form>
