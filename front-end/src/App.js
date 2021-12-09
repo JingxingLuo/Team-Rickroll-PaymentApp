@@ -9,6 +9,7 @@ import About from './pages/about';
 import Transactions from './pages/transactions';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import './styles/home.css';
 import './App.css';
 import './styles/login.css';
 import './styles/signup.css';

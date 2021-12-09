@@ -71,10 +71,16 @@ class UserDto{
 class resultDto{
   Boolean isSuccess;
   String message;
+  double amount;
 
   public resultDto(Boolean isSuccess, String message) {
     this.isSuccess = isSuccess;
     this.message = message;
+  }
+
+  public resultDto(Boolean isSuccess, double amount){
+    this.isSuccess = isSuccess;
+    this.amount = amount;
   }
 }
 
@@ -110,20 +116,39 @@ public class SparkDemo {
     post("/api/Transactions" , (req, res) -> {
       String body = req.body();
       System.out.println("This is the body: " + body);
-      ArrayList<String> test = new ArrayList<>();
-      Document a = myTransactions.find(eq("from", "aaa")).first();
-      System.out.println(a);
-      System.out.println("Transaction pressed!!!");
-      //System.out.println("from: " + a.toString());
-      var b = CashPayment.fromDocument(a);
-      System.out.println("Transaction pressed223!!!");
-      var result = new resultDto(false,"Test");
-      var cash = new CashPayment(123.3);
-      System.out.println("Transaction pressed22!!!");
+      String[] strArray = body.split("\"");
+      List<BasePaymentDto> testList = new ArrayList<>();
+//      FindIterable<Document> iterable = myTransactions.find((eq("from", strArray[1])));
+//      if (iterable == null){
+//        return new resultDto(false, "Currently there is no transaction");
+//      }
+//      MongoCursor<Document> cursor = iterable.iterator();
+//      while(cursor.hasNext()) {
+//        System.out.println(cursor.next());
+//        //someList.add(CashPayment.fromDocument(cursor.next()));
+//      }
 
-
-
-      return gson.toJson(b);
+      List<Document> documentList =  myTransactions.find(eq("from",strArray[1])).into(new ArrayList<>());
+      if (documentList.isEmpty()){
+        return new resultDto(false, "Currently there is no transaction");
+      }
+      for(int i = 0; i < documentList.size(); i++){
+        Document potentialDocuments = documentList.get(i);
+        CashPayment cash = CashPayment.fromDocument(potentialDocuments);
+        testList.add(cash);
+      }
+      return gson.toJson(testList);
+//      System.out.println("This is the somelist size: " + someList.size());
+//      Document a = myTransactions.find(eq("from", strArray[1])).first();
+//      System.out.println(a);
+//      System.out.println("Transaction pressed!!!");
+//      //System.out.println("from: " + a.toString());
+//      var b = CashPayment.fromDocument(a);
+//      System.out.println("Transaction pressed223!!!");
+//      var result = new resultDto(false,"Test");
+//      var cash = new CashPayment(123.3);
+//      System.out.println("Transaction pressed22!!!");
+//      return gson.toJson(b);
     });
 //    FindIterable<Document> iterDoc = myTransactions.find();
 //    System.out.println("Listing all trans");
@@ -140,6 +165,19 @@ public class SparkDemo {
 //    System.out.println(b.getNotes());
 //    System.out.println(b.getType());
 //    System.out.println(b.getAmount());
+
+    post("/api/refresh" , (req, res) -> {
+      String body = req.body();
+      System.out.println("This is the body: " + body);
+      String[] strArray = body.split("\\{|}|\\\\|\"");
+//                for(int i = 0; i < strArray.length; i ++){
+//            System.out.println(i +":" +strArray[i]);
+//          }
+      Document userDoc = myCollection.find(eq("username",strArray[6])).first();
+      //System.out.println(userDoc);
+      var resultDto = new resultDto(true, (Double) userDoc.get("amount"));
+      return gson.toJson(resultDto);
+    });
 
         post("/api/SignUp", (req, res) -> {   // "SignUp" is case sensitive
       String body = req.body();
@@ -271,7 +309,7 @@ public class SparkDemo {
           }
           else{
             System.out.println("The amount is empty!");
-            return "The AMOUNT is missing, try again" + false;
+            return gson.toJson(new resultDto(false, "The amount is missing"));
           }
 
           if(strArray[13] != null){
@@ -280,7 +318,8 @@ public class SparkDemo {
               checkRecipient = true;
             }
             else{
-              return "The recipient does not exist!" + false;
+              System.out.println("We can not find the recipient");
+              return gson.toJson(new resultDto(false, "We can not find the recipient"));
             }
           }
 
@@ -300,7 +339,7 @@ public class SparkDemo {
             Double transfer = Double.valueOf(strArray[23]);
             if((Double)payer.get("amount") < transfer){
               System.out.println("The payer does not have enough money to transfer");
-              return "The payer is poor" + false;
+              return gson.toJson(new resultDto(false, "Your don't have enough in your pocket right now"));
             }
 
             Double loss =  ((Double)payer.get("amount") - transfer);
@@ -331,8 +370,9 @@ public class SparkDemo {
 //            System.out.println(cashDto.getTo());
 //            System.out.println(cashDto.getNotes());
             myTransactions.insertOne(cashDto.toCashDocument());
+            return gson.toJson(new resultDto(true, "You made the transfer successfully"));
           }
-          return null;
+          return gson.toJson(new resultDto(false, "Oppos, something is wrong, check the helper buttons"));
         });
 
 

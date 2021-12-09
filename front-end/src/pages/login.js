@@ -41,7 +41,19 @@ const Login = () => {
     };
 
     if (redirect) {
-        return <Redirect to="/Loginsuccess" />;
+        setTimeout(function() {
+            window.location.href = '/';
+            setRedirect(false);
+         }, 3000);
+        
+        return (
+            <div>
+            <h1 style = {{paddingBottom:'120px'}}>Welcome back! {username}</h1>
+            <div style = {{color :'lightblue', paddingBottom:'300px'}}>
+                Redirecting to the home page in 3 seconds..
+            </div>
+        </div>
+        )
     }
 
     return (

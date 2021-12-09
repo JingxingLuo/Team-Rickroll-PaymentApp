@@ -17,6 +17,9 @@ const CashPayment = () => {
 
     const handleCashPayment = () => {
         console.log('test', from, password, to, type, amount);
+        if(from =="" || password == "" || to == "" || amount == "") {
+            alert("Something goes wrong, check if you have completed the form");
+        }
         const body = {
             from: from,
             password: password,
@@ -30,7 +33,16 @@ const CashPayment = () => {
             body: JSON.stringify(body), //to json string
         };
         fetch('/api/cashPayment', settings) // makes http client calls 
-            .catch(console.log);
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if(!data.isSuccess){
+                    alert(data.message);
+                }
+                else{
+                    window.location.href = '/';
+                }
+            });
     };
 
     const handleVerify = () => {

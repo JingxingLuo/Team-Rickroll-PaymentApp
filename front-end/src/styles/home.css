@@ -23,8 +23,21 @@
 
 .restofPage{
     background-color: #d2eedc;
-    padding-bottom: 100%;
+    padding-bottom: 5%;
     box-sizing: border-box;
     margin-bottom: -1rem;
     margin-right: -1rem;
+}
+
+.button1{
+    display: block;
+    width: 30%;
+    border: none;
+    border-radius: 8px;
+    background-color: #9ce06e;
+    padding: 14px 28px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
 }
