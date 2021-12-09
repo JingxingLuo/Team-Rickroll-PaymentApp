@@ -3,6 +3,7 @@ import Login from './pages/login';
 import SignUp from './pages/signup';
 import Home from './pages/home';
 import About from './pages/about';
+import Transactions from './pages/transactions';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import './App.css';
@@ -32,6 +33,7 @@ function App() {
           <Route path="/SignUp" exact component = {SignUp} />
           <Route path="/Login" exact component = {Login} />
           <Route path="/About" exact component = {About} />
+          <Route path="/Transactions" exact component = {Transactions} />
         </Switch>
         <Switch>
           <Route path="/CashPayment" exact component ={CashPayment} />

@@ -23,6 +23,10 @@ public abstract class BasePaymentDto {
     return this;
   }
 
+  public Double getAmount() {
+    return amount;
+  }
+
   public BasePaymentDto setAmount(Double amount) {
     this.amount = amount;
     return this;

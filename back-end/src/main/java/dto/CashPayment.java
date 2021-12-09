@@ -4,9 +4,34 @@ import org.bson.Document;
 
 public class CashPayment extends BasePaymentDto {
 
+  public String getType() {
+    return type;
+  }
+
+  public CashPayment setType(String type) {
+    this.type = type;
+    return this;
+  }
+
   private String type = "cash";
   String from;
   String to;
+
+  public CashPayment setFrom(String from) {
+    this.from = from;
+    return this;
+  }
+
+  public CashPayment setTo(String to) {
+    this.to = to;
+    return this;
+  }
+
+  public CashPayment setNotes(String notes) {
+    this.notes = notes;
+    return this;
+  }
+
   String notes;
 
   public String getFrom() {
@@ -61,7 +86,8 @@ public class CashPayment extends BasePaymentDto {
   }
 
   public static CashPayment fromDocument(Document document) {
-    var payment = new CashPayment(document.getDouble("amount"));
+    var payment = new CashPayment(document.get("from").toString(), document.get("to").toString(),
+            document.get("type").toString(), document.getDouble("amount"), document.get("notes").toString());
     payment.setUniqueId(document.getObjectId("_id").toHexString());
     return payment;
   }

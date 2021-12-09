@@ -1,6 +1,9 @@
 import com.google.gson.Gson;
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
@@ -11,10 +14,7 @@ import org.eclipse.jetty.server.Authentication;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.mongodb.client.model.Filters.eq;
@@ -103,6 +103,34 @@ public class SparkDemo {
     MongoDatabase db = mongoClient.getDatabase("MyDatabase");
     MongoCollection<Document> myCollection = db.getCollection("Users"); // myDatabase/Users
     MongoCollection<Document> myTransactions = db.getCollection("Transactions");
+
+
+    post("/api/Transactions" , (req, res) -> {
+      ArrayList<String> test = new ArrayList<>();
+      Document a = myTransactions.find(eq("from", "awzum")).first();
+      System.out.println("Transaction pressed!!!");
+      System.out.println("from: " + a.toString());
+      CashPayment b = CashPayment.fromDocument(a);
+      return "<h1> TEST </h1>";
+    });
+    FindIterable<Document> iterDoc = myTransactions.find();
+    System.out.println("Listing all trans");
+    Iterator it = iterDoc.iterator();
+    while (it.hasNext()) {
+      System.out.println(it.next());
+    }
+    Document a = myTransactions.find(eq("from", "awzum")).first();
+    System.out.println("from: " + a.toString());
+    CashPayment b = CashPayment.fromDocument(a);
+    System.out.println(b.getUniqueId());
+    System.out.println(b.getFrom());
+    System.out.println(b.getTo());
+    System.out.println(b.getNotes());
+    System.out.println(b.getType());
+    System.out.println(b.getAmount());
+
+
+
 
         post("/api/SignUp", (req, res) -> {   // "SignUp" is case sensitive
       String body = req.body();

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 function About() {
 
     return (
         <div>
-            <h2 class = "chikin nuget">
+            <h2 class = "TeamRickRoll">
                 Minh
                 Oli
                 Stephen

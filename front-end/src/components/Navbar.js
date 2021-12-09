@@ -14,6 +14,7 @@ function Navbar() {
                 <Link to= "/about"> About Us</Link>
                 <Link to= "/login"> Log In</Link>
                 <Link to= "/signup"> Sign Up</Link>
+                <Link to= "/transactions"> Transacations</Link>
             </div>
         </div>
     //     <div class="active-links">
